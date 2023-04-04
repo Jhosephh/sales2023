@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sales.API.Migrations
 {
-    /// <inheritdoc />
+    /// <inheritdoc /> 
     public partial class AddUserTables : Migration
     {
         /// <inheritdoc />
