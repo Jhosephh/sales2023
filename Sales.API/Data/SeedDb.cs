@@ -59,9 +59,6 @@ namespace Sales.API.Data
             await _userHelper.CheckRoleAsync(UserType.User.ToString());
         }
 
-
-
-
         private async Task CheckCountriesAsync()
         {
             if (!_context.Countries.Any())
