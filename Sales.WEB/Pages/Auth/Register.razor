@@ -108,14 +108,6 @@
                             <ValidationMessage For="@(() => userDTO.CityId)" />
                         </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label>Foto:</label>
-                        <div>
-                            <InputText class="form-control" @bind-Value="@userDTO.Photo" />
-                            <ValidationMessage For="@(() => userDTO.Photo)" />
-                        </div>
-                    </div>
                     <div class="mb-3">
                         <label>Contraseña:</label>
                         <div>
@@ -129,6 +121,9 @@
                             <InputText type="password" class="form-control" @bind-Value="@userDTO.PasswordConfirm" />
                             <ValidationMessage For="@(() => userDTO.PasswordConfirm)" />
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <InputImg Label="Foto" ImageSelected="ImageSelected" ImageURL="@imageUrl" />
                     </div>
                 </div>
             </div>
@@ -144,11 +139,24 @@
     private List<Country>? countries;
     private List<State>? states;
     private List<City>? cities;
+    private string? imageUrl;
 
     protected async override Task OnInitializedAsync()
     {
         await LoadCountriesAsync();
+        if (!string.IsNullOrEmpty(userDTO.Photo))
+        {
+            imageUrl = userDTO.Photo;
+            userDTO.Photo = null;
+        }
+
     }
+    private void ImageSelected(string imagenBase64)
+    {
+        userDTO.Photo = imagenBase64;
+        imageUrl = null;
+    }
+
 
     private async Task LoadCountriesAsync()
     {
